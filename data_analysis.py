@@ -137,15 +137,34 @@ class DataAnalysis:
         self.save_data()
 
     def sorting_emission_data(self, ascending=True, user_id=None):
-        """Sorts emission data, filtered by User ID if specified."""
+        """Sorts emission data using quicksort, filtered by User ID if specified."""
+
+        def quicksort(arr):
+            """Helper function to perform quicksort on a list of tuples."""
+            if len(arr) <= 1:
+                return arr
+            pivot = arr[0]
+            less = [x for x in arr[1:] if x[1] <= pivot[1]]
+            greater = [x for x in arr[1:] if x[1] > pivot[1]]
+            return quicksort(less) + [pivot] + quicksort(greater)
+
         if user_id:
             data_to_sort = self.emissions_df[self.emissions_df["User ID"] == user_id]
         else:
             data_to_sort = self.emissions_df
-        
+
         if not data_to_sort.empty:
-            sorted_data = data_to_sort.sort_values(by="Emission (kg)", ascending=ascending)
+            data_list = data_to_sort[["User ID", "Emission (kg)"]].values.tolist()
+
+            # Apply quicksort and optionally reverse if not ascending
+            sorted_list = quicksort(data_list)
+            if not ascending:
+                sorted_list = sorted_list[::-1]
+
+            # Create a sorted DataFrame for display
+            sorted_data = pd.DataFrame(sorted_list, columns=["User ID", "Emission (kg)"])
             print(sorted_data)
+
         else:
             print("No data available to sort.")
 

@@ -1,6 +1,27 @@
 Category,Emission (kg),User ID
-Vehicle,2070.8,tim
-Flight,990.06,johan
-Flight,1514.65,sebmaier
-Vehicle,1202.35,sebmaier
-Fuel Combustion,58500.0,tim
+Electricity,1200.45,Tim
+Flight,2500.67,Tim
+Vehicle,500.22,Tim
+Shipping,180.12,Tim
+Fuel,600.98,Tim
+Electricity,1300.25,Johan
+Flight,3020.45,Johan
+Vehicle,1200.32,Johan
+Shipping,210.67,Johan
+Fuel,550.34,Johan
+Electricity,1100.3,Sebastian
+Flight,400.1,Sebastian
+Vehicle,800.75,Sebastian
+Shipping,150.8,Sebastian
+Fuel,650.95,Sebastian
+Electricity,1400.6,Max
+Flight,220.88,Max
+Vehicle,3800.4,Max
+Shipping,175.3,Max
+Fuel,600.11,Max
+Electricity,1150.35,Paul
+Flight,250.75,Paul
+Vehicle,200.15,Paul
+Shipping,190.4,Paul
+Fuel,620.55,Paul
+

@@ -45,7 +45,7 @@ class DataAnalysis:
             required_columns = ["Category", "Emission (kg)", "User ID"]
             for col in required_columns:
                 if col not in self.emissions_df.columns:
-                    self.emissions_df[col] = None  # Initialize missing column
+                    self.emissions_df[col] = None  
             
             self.total_emissions = self.emissions_df["Emission (kg)"].sum()
         else:
@@ -81,7 +81,7 @@ class DataAnalysis:
             if not data_to_visualize.empty:
                 emissions_sum = data_to_visualize.groupby("Category").sum().sort_values(by="Emission (kg)", ascending=False)
                 ax = emissions_sum.plot(kind="bar", y="Emission (kg)", legend=False, color=sns.color_palette("Set2", len(emissions_sum)))
-
+                ax.bar_label(ax.containers[0], labels=[f'{v:.2f}' for v in emissions_sum["Emission (kg)"]], label_type="edge", fontsize=10)
                 plt.title(title, fontsize=16)
                 plt.xlabel("Emission (kg)", fontsize=12)
                 plt.ylabel("Category", fontsize=12)
@@ -154,7 +154,7 @@ class DataAnalysis:
             data_to_sort = self.emissions_df
 
         if not data_to_sort.empty:
-            data_list = data_to_sort[["User ID", "Emission (kg)"]].values.tolist()
+            data_list = data_to_sort[["User ID", "Emission (kg)","Category"]].values.tolist()
 
             # Apply quicksort and optionally reverse if not ascending
             sorted_list = quicksort(data_list)
@@ -162,7 +162,7 @@ class DataAnalysis:
                 sorted_list = sorted_list[::-1]
 
             # Create a sorted DataFrame for display
-            sorted_data = pd.DataFrame(sorted_list, columns=["User ID", "Emission (kg)"])
+            sorted_data = pd.DataFrame(sorted_list, columns=["User ID", "Emission (kg)","Category"])
             print(sorted_data)
 
         else:

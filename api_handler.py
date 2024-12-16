@@ -1,5 +1,5 @@
 import requests
-import json
+
 
 class CarbonInterfaceAPI:
     def __init__(self, api_key):
@@ -11,7 +11,6 @@ class CarbonInterfaceAPI:
         }
     
     def create_estimate(self, estimate_type, params):
-        """ Create an estimate for the given type and parameters """
         try:
             data = {"type": estimate_type, **params}
             response = requests.post(self.base_url, headers=self.headers, json=data)
